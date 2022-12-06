@@ -33,6 +33,8 @@ Huge thanks to the team behind the [Bevy Engine](https://bevyengine.org/) ❤️
 
 To best utilize the [Bevy Engine](https://bevyengine.org/) follow [their guide](https://bevyengine.org/learn/book/getting-started/setup/).
 
+**This is highly dependant on the development platform and does NOT affect the target binaries.**
+
 ## Project layout
 
 | Folder                                         | Description                                                                                                                         | GitHub Actions                                                                                                                                                                                                      | Coverage                                                                                                                                                                  |
