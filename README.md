@@ -1,4 +1,4 @@
-# Rust Multi-Platform Base Project Template
+# Rust Multi-Platform: Bevy Template
 
 > ⚠️ THIS IS A TEMPLATE. ⚠️
 
