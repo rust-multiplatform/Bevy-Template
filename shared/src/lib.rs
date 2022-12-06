@@ -22,5 +22,8 @@ fn hello_world_system() {
 }
 
 pub fn entrypoint() {
-    App::new().add_system(hello_world_system).run();
+    App::new()
+        .add_startup_system(add_persons)
+        .add_system(hello_world_system)
+        .run();
 }
