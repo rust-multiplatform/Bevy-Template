@@ -35,6 +35,10 @@ jobs:
         if: ${{ matrix.os != 'windows-latest' }}
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
 
+      - name: Install Dependencies on Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
+
       - name: Check
         run: cargo check --verbose --package shared
       - name: Build (Debug)
