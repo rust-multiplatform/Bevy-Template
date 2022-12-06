@@ -32,6 +32,10 @@ jobs:
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
 
+      - name: Install Dependencies on macOS
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: brew install michaeleisel/zld/zld
+
       - name: Install target ${{ matrix.target }}
         run: rustup target add ${{ matrix.target }}
 
