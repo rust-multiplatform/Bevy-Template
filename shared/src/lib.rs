@@ -23,6 +23,7 @@ fn hello_world_system() {
 
 pub fn entrypoint() {
     App::new()
+        // Startup Systems run once at startup
         .add_startup_system(add_persons)
         .add_system(hello_world_system)
         .run();
