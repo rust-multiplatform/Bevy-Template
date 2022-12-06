@@ -17,7 +17,7 @@ fn add_persons(mut commands: Commands) {
     commands.spawn((Person, Name("Rust".to_string())));
 }
 
-fn hello_world_system() {
+fn greet_people() {
     println!("Hello from Rust!");
 }
 
@@ -25,6 +25,6 @@ pub fn entrypoint() {
     App::new()
         // Startup Systems run once at startup
         .add_startup_system(add_persons)
-        .add_system(hello_world_system)
+        .add_system(greet_people)
         .run();
 }
