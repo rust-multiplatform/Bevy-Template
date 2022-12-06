@@ -6,7 +6,7 @@ members = [
 ]
 
 # Enables a small amount of optimization in debug builds
-[profiles.dev]
+[profile.dev]
 opt-level = 1
 
 # Enable high optimizations for dependencies (incl. Bevy), but not for our code:
