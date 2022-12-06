@@ -12,13 +12,15 @@ struct Person;
 struct Name(String);
 
 fn add_persons(mut commands: Commands) {
+    commands.spawn((Person, Name("from Rust".to_string())));
     commands.spawn((Person, Name("Someone".to_string())));
     commands.spawn((Person, Name("SomeFirstName SomeLastName".to_string())));
-    commands.spawn((Person, Name("Rust".to_string())));
 }
 
-fn greet_people() {
-    println!("Hello from Rust!");
+fn greet_people(query: Query<&Name, With<Person>>) {
+    for person in query.iter() {
+        println!("Hello {}!", person.0);
+    }
 }
 
 pub fn entrypoint() {
