@@ -29,6 +29,10 @@ For templates/examples we recommend to also dual-licensing.
 
 Huge thanks to the team behind the [Bevy Engine](https://bevyengine.org/) ❤️!
 
+## Performance & Optimizations
+
+To best utilize the [Bevy Engine](https://bevyengine.org/) follow [their guide](https://bevyengine.org/learn/book/getting-started/setup/).
+
 ## Project layout
 
 | Folder                                         | Description                                                                                                                         | GitHub Actions                                                                                                                                                                                                      | Coverage                                                                                                                                                                  |
