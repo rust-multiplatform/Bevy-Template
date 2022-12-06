@@ -25,6 +25,10 @@ This project is dual licensed in Rust's fashion:
 For your own project you can chose whichever fits you better.
 For templates/examples we recommend to also dual-licensing.
 
+## Credits
+
+Huge thanks to the team behind the [Bevy Engine](https://bevyengine.org/) ❤️!
+
 ## Project layout
 
 | Folder                                         | Description                                                                                                                         | GitHub Actions                                                                                                                                                                                                                      | Coverage                                                                                                                                                                                  |
