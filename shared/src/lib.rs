@@ -8,6 +8,9 @@ use bevy::prelude::*;
 #[derive(Component)]
 struct Person;
 
+#[derive(Component)]
+struct Name(String);
+
 fn hello_world_system() {
     println!("Hello from Rust!");
 }
