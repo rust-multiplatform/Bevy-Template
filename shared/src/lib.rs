@@ -5,6 +5,9 @@ mod tests;
 
 use bevy::prelude::*;
 
+#[derive(Component)]
+struct Person;
+
 fn hello_world_system() {
     println!("Hello from Rust!");
 }
