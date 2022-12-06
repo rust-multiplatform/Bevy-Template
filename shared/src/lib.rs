@@ -5,8 +5,10 @@ mod tests;
 
 use bevy::prelude::*;
 
-pub fn entrypoint() {
+fn hello_world_system() {
     println!("Hello from Rust!");
+}
 
-    App::new().run();
+pub fn entrypoint() {
+    App::new().add_system(hello_world_system).run();
 }
