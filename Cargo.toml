@@ -4,3 +4,7 @@ members = [
     "platform/*",
     "shared"
 ]
+
+# Enables a small amount of optimization in debug builds
+[profiles.dev]
+opt-level = 1
