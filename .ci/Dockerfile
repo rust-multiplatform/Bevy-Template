@@ -7,7 +7,7 @@ USER root
 RUN adduser ci --disabled-password --gecos ""
 
 USER ci
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y && echo 'source $HOME/.cargo/env' >> ~/.bashrc
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly --profile complete -y && echo 'source $HOME/.cargo/env' >> ~/.bashrc
 
 USER ci
 WORKDIR /home/ci
