@@ -12,4 +12,3 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profi
 USER ci
 WORKDIR /home/ci
 ENTRYPOINT [ "/bin/bash" ]
-CMD [ "/bin/bash" ]
