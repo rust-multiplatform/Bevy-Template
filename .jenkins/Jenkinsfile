@@ -16,7 +16,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -35,7 +34,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -52,7 +50,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -68,7 +65,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     reuseNode true
                 }
             }
@@ -84,7 +80,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -100,7 +95,6 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     label 'bevy_ci_image'
-                    args '-i'
                     reuseNode true
                 }
             }
