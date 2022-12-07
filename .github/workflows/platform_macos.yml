@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target
-          key: platform_macos-${{ runner.os }}-${{ matrix.target }}-target
+          key: target-cache
 
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
