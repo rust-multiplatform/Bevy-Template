@@ -11,9 +11,11 @@ pipeline {
     stages {
         stage('Rust Versions') {
             agent {
-                docker { 
+                dockerfile { 
                     // Which image to use
-                    dockerfile '.ci/Dockerfile'
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -27,9 +29,11 @@ pipeline {
         }
         stage('Rust Check') {
             agent {
-                docker { 
+                dockerfile { 
                     // Which image to use
-                    dockerfile '.ci/Dockerfile'
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -41,9 +45,11 @@ pipeline {
         }
         stage('Rust Build (Debug)') {
             agent {
-                docker { 
+                dockerfile { 
                     // Which image to use
-                    dockerfile '.ci/Dockerfile'
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -55,8 +61,10 @@ pipeline {
         }
         stage('Rust Build (Release)') {
             agent {
-                docker { 
-                    dockerfile '.ci/Dockerfile'
+                dockerfile { 
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     reuseNode true
                 }
             }
@@ -67,9 +75,11 @@ pipeline {
         }
         stage('Rust Test (Debug)') {
             agent {
-                docker { 
+                dockerfile { 
                     // Which image to use
-                    dockerfile '.ci/Dockerfile'
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -81,8 +91,10 @@ pipeline {
         }
         stage('Rust Test (Release)') {
             agent {
-                docker { 
-                    dockerfile '.ci/Dockerfile'
+                dockerfile { 
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'bevy_ci_image'
                     reuseNode true
                 }
             }
