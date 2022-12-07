@@ -11,4 +11,4 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly --prof
 
 USER ci
 WORKDIR /home/ci
-ENTRYPOINT [ "/bin/cat", "/dev/null" ]
+ENTRYPOINT [ "/bin/sh", "-c", "'while true; do sleep 300; done'" ]
