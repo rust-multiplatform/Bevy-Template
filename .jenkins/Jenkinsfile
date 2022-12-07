@@ -13,7 +13,7 @@ pipeline {
             agent {
                 docker { 
                     // Which image to use
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -29,7 +29,7 @@ pipeline {
             agent {
                 docker { 
                     // Which image to use
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -43,7 +43,7 @@ pipeline {
             agent {
                 docker { 
                     // Which image to use
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -56,7 +56,7 @@ pipeline {
         stage('Rust Build (Release)') {
             agent {
                 docker { 
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     reuseNode true
                 }
             }
@@ -69,7 +69,7 @@ pipeline {
             agent {
                 docker { 
                     // Which image to use
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     // Reuse the same node, avoids having to clone the repository on all nodes
                     reuseNode true
                 }
@@ -82,7 +82,7 @@ pipeline {
         stage('Rust Test (Release)') {
             agent {
                 docker { 
-                    image 'rust:latest' 
+                    dockerfile '.ci/Dockerfile'
                     reuseNode true
                 }
             }
