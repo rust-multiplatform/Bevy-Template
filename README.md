@@ -192,7 +192,8 @@ In fact I do have private projects on there.
 
 ### CI Platform: CircleCI
 
-On CircleCI we also support each package, but we only have one badge for the whole pipeline.
+On CircleCI we only support the linux platform do to restrictions with dependencies.  
+In theory, it's possible to build for every platform but is far outside of this projects scope.
 
 [![CircleCI](https://circleci.com/gh/rust-multiplatform/Bevy-Template/tree/main.svg?style=svg)](https://circleci.com/gh/rust-multiplatform/Bevy-Template/tree/main)
 
