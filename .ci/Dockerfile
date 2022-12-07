@@ -11,5 +11,5 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly --prof
 
 USER ci
 WORKDIR /home/ci
-ENTRYPOINT [ "/bin/cat" ]
-CMD [ "/bin/cat" ]
+ENTRYPOINT [ "/bin/tail", "-f", "/dev/null" ]
+CMD [ "/bin/tail", "-f", "/dev/null" ]
