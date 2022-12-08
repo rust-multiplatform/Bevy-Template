@@ -11,7 +11,7 @@ workflows:
 jobs:
   platform_linux:
     docker:
-      - image: cimg/rust:1.65
+      - image: ghcr.io/rust-multiplatform/ci_image_bevy:main
 
     steps:
       - checkout
@@ -41,7 +41,7 @@ jobs:
 
   shared:
     docker:
-      - image: cimg/rust:1.65
+      - image: ghcr.io/rust-multiplatform/ci_image_bevy:main
 
     steps:
       - checkout
