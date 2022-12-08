@@ -1,7 +1,6 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
-import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -37,16 +36,7 @@ changeBuildType(RelativeId("Build")) {
         }
     }
     steps {
-        insert(0) {
-            dockerCommand {
-                commandType = build {
-                    source = file {
-                        path = ".ci/Dockerfile"
-                    }
-                }
-            }
-        }
-        items.removeAt(1)
-        items.removeAt(1)
+        items.removeAt(0)
+        items.removeAt(0)
     }
 }
