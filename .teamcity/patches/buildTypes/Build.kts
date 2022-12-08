@@ -41,5 +41,9 @@ changeBuildType(RelativeId("Build")) {
             clearConditions()
             param("cargo-toolchain", "nightly")
         }
+        update<BuildStep>(1) {
+            clearConditions()
+            param("cargo-toolchain", "nightly")
+        }
     }
 }
