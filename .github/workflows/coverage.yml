@@ -19,7 +19,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: target
-          key: shared-${{ runner.os }}-target
+          key: target-cache
 
       - name: Cache Cargo-Home (compiled/installed binaries)
         id: cargo-coverage-home
