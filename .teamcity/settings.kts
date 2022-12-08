@@ -27,8 +27,6 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2022.10"
 
 project {
-
-    buildType(Test)
     buildType(Build)
 }
 
@@ -42,79 +40,81 @@ object Build : BuildType({
         root(DslContext.settingsRoot)
     }
 
-    steps {
+    expectSteps {
         step {
             name = "Build (Debug)"
             type = "cargo"
             executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
-            param("cargo-build-package", "platform_linux")
-            param("cargo-test-no-default-features", "true")
-            param("cargo-toolchain", "nightly")
-            param("cargo-verbosity", "--verbose")
             param("cargo-bench-package", "platform_linux")
+            param("cargo-build-package", "platform_linux")
             param("cargo-command", "build")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
         }
         step {
             name = "Build (Release)"
             type = "cargo"
             executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
+            param("cargo-bench-arguments", "--release")
+            param("cargo-bench-package", "platform_linux")
             param("cargo-build-package", "platform_linux")
             param("cargo-build-release", "true")
-            param("cargo-test-no-default-features", "true")
-            param("cargo-toolchain", "nightly")
-            param("cargo-verbosity", "--verbose")
-            param("cargo-bench-package", "platform_linux")
-            param("cargo-bench-arguments", "--release")
             param("cargo-command", "build")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
         }
     }
-
-    triggers {
-        vcs {
-        }
-        schedule {
-            schedulingPolicy = daily {
-                hour = 3
-            }
-            triggerBuild = always()
-        }
-    }
-})
-
-object Test : BuildType({
-    name = "Test"
-
-    allowExternalStatus = true
-    artifactRules = "target/**/*"
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
     steps {
-        step {
-            name = "Test (Debug)"
-            type = "cargo"
-            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
-            param("cargo-test-no-fail-fast", "true")
-            param("cargo-test-package", "platform_linux")
-            param("cargo-test-no-default-features", "true")
-            param("cargo-toolchain", "nightly")
-            param("cargo-verbosity", "--verbose")
-            param("cargo-command", "test")
+        insert(0) {
+            dockerCommand {
+                name = "Build Docker Image"
+                commandType = build {
+                    source = file {
+                        path = ".ci/Dockerfile"
+                    }
+                    contextDir = ".ci"
+                    platform = DockerCommandStep.ImagePlatform.Linux
+                    namesAndTags = "bevy_ci_image:latest"
+                    commandArgs = "--pull"
+                }
+            }
         }
-        step {
-            name = "Test (Release)"
-            type = "cargo"
-            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
-            param("cargo-test-no-fail-fast", "true")
-            param("cargo-test-package", "platform_linux")
-            param("cargo-test-no-default-features", "true")
-            param("cargo-toolchain", "nightly")
-            param("cargo-verbosity", "--verbose")
-            param("cargo-test-release", "true")
-            param("cargo-command", "test")
+        insert(1) {
+            script {
+                name = "Build (Debug)"
+                scriptContent = "cargo build"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
         }
+        insert(2) {
+            script {
+                name = "Test (Debug)"
+                scriptContent = "cargo test"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
+        }
+        insert(3) {
+            script {
+                name = "Build (Release)"
+                scriptContent = "cargo build --release"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
+        }
+        insert(4) {
+            script {
+                name = "Test (Release)"
+                scriptContent = "cargo test --release"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
+        }
+        items.removeAt(5)
+        items.removeAt(5)
     }
 
     triggers {
