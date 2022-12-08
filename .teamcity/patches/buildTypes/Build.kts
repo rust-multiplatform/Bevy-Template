@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildSteps.DockerCommandStep
+import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -36,7 +38,21 @@ changeBuildType(RelativeId("Build")) {
         }
     }
     steps {
-        items.removeAt(0)
-        items.removeAt(0)
+        insert(0) {
+            dockerCommand {
+                name = "Build Docker Image"
+                commandType = build {
+                    source = file {
+                        path = ".ci/Dockerfile"
+                    }
+                    contextDir = ".ci"
+                    platform = DockerCommandStep.ImagePlatform.Linux
+                    namesAndTags = "bevy_ci_image:latest"
+                    commandArgs = "--pull"
+                }
+            }
+        }
+        items.removeAt(1)
+        items.removeAt(1)
     }
 }
