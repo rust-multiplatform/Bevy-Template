@@ -39,14 +39,13 @@ changeBuildType(RelativeId("Build")) {
     }
     steps {
         update<BuildStep>(0) {
+            name = "Build (Release)"
             clearConditions()
+            param("cargo-build-release", "true")
             param("cargo-toolchain", "nightly")
+            param("cargo-bench-arguments", "--release")
         }
-        update<BuildStep>(1) {
-            clearConditions()
-            param("cargo-toolchain", "nightly")
-        }
-        insert(2) {
+        insert(1) {
             dockerCommand {
                 commandType = build {
                     source = file {
@@ -55,5 +54,6 @@ changeBuildType(RelativeId("Build")) {
                 }
             }
         }
+        items.removeAt(2)
     }
 }
