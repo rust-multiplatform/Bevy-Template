@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.BuildStep
+import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -44,6 +45,15 @@ changeBuildType(RelativeId("Build")) {
         update<BuildStep>(1) {
             clearConditions()
             param("cargo-toolchain", "nightly")
+        }
+        insert(2) {
+            dockerCommand {
+                commandType = build {
+                    source = file {
+                        path = ".ci/Dockerfile"
+                    }
+                }
+            }
         }
     }
 }
