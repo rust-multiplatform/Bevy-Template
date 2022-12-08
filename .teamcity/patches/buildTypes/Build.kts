@@ -1,7 +1,6 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
-import jetbrains.buildServer.configs.kotlin.BuildStep
 import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.ui.*
 
@@ -38,14 +37,7 @@ changeBuildType(RelativeId("Build")) {
         }
     }
     steps {
-        update<BuildStep>(0) {
-            name = "Build (Release)"
-            clearConditions()
-            param("cargo-build-release", "true")
-            param("cargo-toolchain", "nightly")
-            param("cargo-bench-arguments", "--release")
-        }
-        insert(1) {
+        insert(0) {
             dockerCommand {
                 commandType = build {
                     source = file {
@@ -54,6 +46,7 @@ changeBuildType(RelativeId("Build")) {
                 }
             }
         }
-        items.removeAt(2)
+        items.removeAt(1)
+        items.removeAt(1)
     }
 }
