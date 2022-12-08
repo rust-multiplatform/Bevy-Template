@@ -72,8 +72,8 @@ changeBuildType(RelativeId("Build")) {
         }
         insert(3) {
             script {
-                name = "Build (Debug) (2)"
-                scriptContent = "cargo build"
+                name = "Build (Release)"
+                scriptContent = "cargo build --release"
                 dockerImage = "bevy_ci_image:latest"
                 dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
             }
