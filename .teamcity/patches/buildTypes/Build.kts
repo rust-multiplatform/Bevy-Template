@@ -2,7 +2,9 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildSteps.DockerCommandStep
+import jetbrains.buildServer.configs.kotlin.buildSteps.ScriptBuildStep
 import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
+import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -52,7 +54,15 @@ changeBuildType(RelativeId("Build")) {
                 }
             }
         }
-        items.removeAt(1)
-        items.removeAt(1)
+        insert(1) {
+            script {
+                name = "Build (Debug)"
+                scriptContent = "cargo build"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
+        }
+        items.removeAt(2)
+        items.removeAt(2)
     }
 }
