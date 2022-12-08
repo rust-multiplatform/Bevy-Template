@@ -62,7 +62,15 @@ changeBuildType(RelativeId("Build")) {
                 dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
             }
         }
-        items.removeAt(2)
-        items.removeAt(2)
+        insert(2) {
+            script {
+                name = "Build (Debug) (1)"
+                scriptContent = "cargo build"
+                dockerImage = "bevy_ci_image:latest"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            }
+        }
+        items.removeAt(3)
+        items.removeAt(3)
     }
 }
