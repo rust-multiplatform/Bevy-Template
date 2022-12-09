@@ -1,9 +1,10 @@
-use crate::wasm_entry;
+// use crate::wasm_entry;
 
-#[test]
-fn check_wasm_entry_exists() {
-    wasm_entry();
-}
+// Example test:
+// #[test]
+// fn check_wasm_entry_exists() {
+//     wasm_entry();
+// }
 
 // Example for UI tests:
 // #[test]
