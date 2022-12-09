@@ -27,6 +27,7 @@ pub fn entrypoint() {
     App::new()
         // Startup Systems run once at startup
         .add_startup_system(add_persons)
+        // Normal Systems run every frame
         .add_system(greet_people)
         .run();
 }
