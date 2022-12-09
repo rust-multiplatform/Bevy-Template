@@ -25,6 +25,9 @@ fn greet_people(query: Query<&Name, With<Person>>) {
 
 pub fn entrypoint() {
     App::new()
+        // Add default plugins
+        // Includes things like UI, Input, and Windowing
+        .add_plugins(DefaultPlugins)
         // Startup Systems run once at startup
         .add_startup_system(add_persons)
         // Normal Systems run every frame
