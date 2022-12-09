@@ -4,7 +4,7 @@
 mod tests;
 
 mod greet_people_plugin;
-use greet_people_plugin::*;
+use greet_people_plugin::GreetPeoplePlugin;
 
 use bevy::prelude::*;
 
