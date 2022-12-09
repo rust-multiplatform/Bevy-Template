@@ -3,34 +3,17 @@
 #[cfg(test)]
 mod tests;
 
+mod greet_people_plugin;
+use greet_people_plugin::*;
+
 use bevy::prelude::*;
-
-#[derive(Component)]
-struct Person;
-
-#[derive(Component)]
-struct Name(String);
-
-fn add_persons(mut commands: Commands) {
-    commands.spawn((Person, Name("from Rust".to_string())));
-    commands.spawn((Person, Name("Someone".to_string())));
-    commands.spawn((Person, Name("SomeFirstName SomeLastName".to_string())));
-}
-
-fn greet_people(query: Query<&Name, With<Person>>) {
-    for person in query.iter() {
-        println!("Hello {}!", person.0);
-    }
-}
 
 pub fn entrypoint() {
     App::new()
         // Add default plugins
         // Includes things like UI, Input, and Windowing
         .add_plugins(DefaultPlugins)
-        // Startup Systems run once at startup
-        .add_startup_system(add_persons)
-        // Normal Systems run every frame
-        .add_system(greet_people)
+        // Add our own plugin
+        .add_plugin(GreetPeoplePlugin)
         .run();
 }
