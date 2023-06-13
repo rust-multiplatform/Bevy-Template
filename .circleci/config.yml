@@ -30,7 +30,7 @@ jobs:
             steps:
                   - checkout
                   - run: cargo --version
-                  - run: apt-get install -y clang
+                  - run: sudo apt-get install -y clang
 
                   # Build
                   - run:
