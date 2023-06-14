@@ -55,12 +55,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: "shared_debug_${{ matrix.os }}"
-          path: |
-            target/debug/libshare*
-            target/debug/share*
-      - uses: actions/upload-artifact@v3
-        with:
           name: "shared_release_${{ matrix.os }}"
           path: |
             target/release/libshare*
